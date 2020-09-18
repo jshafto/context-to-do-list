@@ -7,5 +7,5 @@ A simple to-do list application using React and local storage.
 ## Project Checklist
 - [x] Project setup and context creation
 - [x] Context provider component
-- [ ] Consumer component
-- [ ] Accessing context through contextType
+- [x] Consumer component
+- [x] Accessing context through contextType

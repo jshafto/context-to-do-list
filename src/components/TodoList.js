@@ -1,14 +1,18 @@
 import React from 'react';
-// import Task from './Task';
-// TODO: Import context
+import Task from './Task';
+import TodoContext from '../contexts/TodoContext';
 
 class TodoList extends React.Component {
   // TODO: Access context
-
+  static contextType = TodoContext;
   render() {
     return (
       <ul>
-        {/* TODO: Render a `Task` component for each of the `tasks` stored in context */}
+        {Object.values(this.context.tasks).map(task => (
+          <Task task={task} key={task.id} deleteTask={this.context.deleteTask} />
+
+        )
+        )}
       </ul>
     );
   }
