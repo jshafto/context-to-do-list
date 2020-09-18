@@ -1,19 +1,21 @@
 import React from 'react';
-// TODO: Import TodoContext
+import TodoContext from '../contexts/TodoContext';
 
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    // TODO: Set default `inputValue` state
+    this.state={
+      inputValue: '',
+    }
   }
 
   handleInputChange = (e) => {
-    // TODO: Update `inputValue` state
+    this.setState({inputValue: e.target.value})
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Create a task based on the `inputValue`
+    this.props.createTask(this.state.inputValue);
   }
 
   render() {
@@ -22,7 +24,7 @@ class TodoForm extends React.Component {
         <input
           type="text"
           placeholder="Add a todo"
-          value={/* TODO: Set the `inputValue` state as the input's value */}
+          value={this.state.inputValue}
           onChange={this.handleInputChange}
         />
       </form>
@@ -31,8 +33,9 @@ class TodoForm extends React.Component {
 }
 
 const TodoFormWithContext = () => (
-  // TODO: Use a Consumer component to wrap the TodoForm
-  // TODO: Pass the `createTask` method stored in the context value as a prop to TodoForm
+  <TodoContext.Consumer>
+    {value => <TodoForm createTask={value.createTask}/>/* TODO: Pass the `createTask` method as a prop to TodoForm */ }
+  </TodoContext.Consumer>
 );
 
 export default TodoFormWithContext;
